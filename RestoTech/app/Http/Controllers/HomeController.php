@@ -6,13 +6,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return view('home.index');
+    function unlogged(){
+        return view('home.unlogged');
     }
 
-    public function login()
-    {
-        return view('home.login');
+    function index(){
+        return view('home.index');
     }
 }

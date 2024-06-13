@@ -19,8 +19,8 @@ class PlatosController extends Controller
         $plato = new Plato();
         $plato->nombre = $request->nombre;
         $plato->precio = $request->precio;
-        $plato->categoria = $request->categoria;
+        $plato->categoria_id = $request->categoria;
         $plato->save();
-        return redirect()->route('platos.index');
+        return redirect()->route('platos');
     }
 }
