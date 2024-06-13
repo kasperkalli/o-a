@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plato extends Model
+class roltype extends Model
 {
-    protected $table = 'platos';
+    protected $table = 'tipo_rol';
+    public $timestamps = false;
     use HasFactory;
 }

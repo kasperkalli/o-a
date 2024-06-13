@@ -2,12 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\RolType;
+use App\Models\Mesa;
+use App\Models\Plato;
 use App\Models\platoCategory;
+use App\Models\RolType;
+use App\Models\User;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -29,14 +32,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('test123'),
             'rol_id' => 1
         ]);
-        platoCategory::create([
-            'category' => 'entrada'
+        platoCategory::create(
+            ['category' => 'entrada'],
+            ['category' => 'plato fuerte'],
+            ['category' => 'postre']);
+        Mesa::create([
+            'numero' => 1,
+            'status' => 'disponible'
         ]);
-        platoCategory::create([
-            'category' => 'plato fuerte'
-        ]);
-        platoCategory::create([
-            'category' => 'postre'
-        ]);
+
     }
 }

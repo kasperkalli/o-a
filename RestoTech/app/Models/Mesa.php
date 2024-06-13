@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class roltype extends Model
+class Mesa extends Model
 {
-    protected $table = 'roltype';
-    public $timestamps = false;
+    protected $table = 'mesas';
     use HasFactory;
 }

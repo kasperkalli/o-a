@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('platos', function (Blueprint $table) {
-            $table->unsignedInteger('id')->autoIncrement();
-            $table->string('nombre', 50);
-            $table->integer('precio');
-            $table->string('categoria', 50)->nullable();
-            $table->timestamps();
+        Schema::create('tipo_rol', function (Blueprint $table) {
+            $table->id();
+            $table->string('rol');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('platos');
+        Schema::dropIfExists('tipo_rol');
     }
 };

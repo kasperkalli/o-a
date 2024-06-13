@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roltype', function (Blueprint $table) {
+        Schema::create('quejas', function (Blueprint $table) {
             $table->id();
-            $table->string('rol');
+            $table->string('motivo');
+            $table->foreignId('id_usuario')->constrained('users');
+            $table->foreignId('id_boleta')->constrained('boleta');
+            $table->string('estado')->default('pendiente');
+            $table->timestamps();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roltype');
+        Schema::dropIfExists('quejas');
     }
 };

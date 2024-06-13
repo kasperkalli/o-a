@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('claim', function (Blueprint $table) {
-            $table->id();
-            $table->string('motive');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('ticket_id')->constrained('ticket');
-            $table->string('status');
+        Schema::create('platos_vendidos', function (Blueprint $table) {
+            $table->foreignId('id_boleta')->constrained('boleta');
+            $table->foreignId('id_plato')->constrained('platos');
+            $table->integer('cantidad') -> default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('claim');
+        Schema::dropIfExists('platos_vendidos');
     }
 };

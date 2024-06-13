@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class platoCategory extends Model
 {
-    protected $table = 'plate_category';
+    protected $table = 'categoria_plato';
     public $timestamps = false;
     use HasFactory;
 }

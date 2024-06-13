@@ -23,4 +23,19 @@ class PlatosController extends Controller
         $plato->save();
         return redirect()->route('platos');
     }
+
+    public function find(Request $request){
+        $plato = Plato::find($request->id);
+        return view('platos.edit', compact('plato'));
+    }
+
+    public function update(Request $request){
+        $plato = Plato::find($request->id);
+        $plato->nombre = $request->nombre;
+        $plato->precio = $request->precio;
+        $plato->categoria_id = $request->categoria;
+        $plato->save();
+        return redirect()->route('platos');
+    }
+
 }
