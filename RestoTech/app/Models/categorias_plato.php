@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class platoCategory extends Model
+class categorias_plato extends Model
 {
-    protected $table = 'categoria_plato';
+    protected $table = 'categorias_platos';
     public $timestamps = false;
     use HasFactory;
 }

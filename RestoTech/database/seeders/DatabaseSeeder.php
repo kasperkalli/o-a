@@ -7,8 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Mesa;
 use App\Models\Plato;
-use App\Models\platoCategory;
-use App\Models\RolType;
+use App\Models\categorias_plato;
+use App\Models\tipo_rol;
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -20,26 +20,29 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         
-        RolType::create([
-            'rol' => 'Customer'
-        ]);
-        RolType::create([
-            'rol' => 'Admin'
-        ]);
+        tipo_rol::create(
+            ['rol' => 'Customer'],
+            ['rol' => 'Admin']
+        );
+
         User::create([
             'name' => 'test1',
             'email' => 'test1@mail.com',
             'password' => Hash::make('test123'),
             'rol_id' => 1
         ]);
-        platoCategory::create(
-            ['category' => 'entrada'],
-            ['category' => 'plato fuerte'],
-            ['category' => 'postre']);
-        Mesa::create([
-            'numero' => 1,
-            'status' => 'disponible'
-        ]);
+
+        categorias_plato::create(
+            ['categoria' => 'entrada'],
+            ['categoria' => 'plato fuerte'],
+            ['categoria' => 'postre']
+        );
+
+        Mesa::create(
+            ['descripcion' => 'mesa de test',
+             'posx' => 0,
+             'posy' => 0]
+        );
 
     }
 }

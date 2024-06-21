@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('precio');
-            $table->foreignId('categoria_id')->constrained('plate_category');
+            $table->foreignId('categoria_id')->constrained('categorias_platos');
             $table->timestamps();
         });
     }

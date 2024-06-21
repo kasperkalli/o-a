@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('motivo');
             $table->foreignId('id_usuario')->constrained('users');
-            $table->foreignId('id_boleta')->constrained('boleta');
+            $table->foreignId('id_boleta')->constrained('boletas');
             $table->string('estado')->default('pendiente');
             $table->timestamps();
         });

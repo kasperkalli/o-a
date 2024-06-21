@@ -26,7 +26,7 @@ class UserController extends Controller
         ];
 
         $remember = $request->chek ? true : false;
-
+        
         if(Auth::attempt($credentials, $remember)){
 
             $request->session()->regenerate();

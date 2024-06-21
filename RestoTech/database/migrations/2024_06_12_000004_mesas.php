@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
-            $table->string('estado');
-            $table->integer('numero_asientos');
-            $table->integer('posx');
-            $table->integer('posy');
+            $table->string('descripcion') -> nullable();
+            $table->boolean('usandose') -> default(false);
+            $table->integer('numero_asientos') -> default(4);
+            $table->integer('posx') -> nullable();
+            $table->integer('posy') -> nullable();
             $table->timestamps();
         });
     }
