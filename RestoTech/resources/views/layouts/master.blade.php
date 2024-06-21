@@ -22,11 +22,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item @if (Route::current()->getName() == 'mesas.index') active @endif">
+                    <li class="nav-item {{@if (Route::current()->getName() == 'mesas.index') active @endif}}">
                         <a class="nav-link" aria-current="page" href="{{ route('mesas') }}">Mesas</a>
                     </li>
-                    <li class="nav-item @if (Route::current()->getName() == 'platos.index') active @endif">
-                        <a class="nav-link" aria-current="page" href="{{ route('platos') }}">Menu</a>
+                    <li class="nav-item {{@if (Route::current()->getName() == 'platos.index') active @endif}}">
+                        <a class="nav-link" aria-current="page" href="{{ route('platos') }}">Platos</a>
+                    </li>
+                    <li class="nav-item {{@if (Route::current()->getName() == 'admin.users') active @endif}}" >
+                        <a class="nav-link" style="pointer-events: none" aria-current="page" href="{{ route('users') }}">Usuarios</a>
                     </li>
                 </ul>
             </div>
