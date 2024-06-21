@@ -25,12 +25,16 @@ class DatabaseSeeder extends Seeder
             ['rol' => 'Admin']
         );
 
-        User::create([
-            'name' => 'test1',
-            'email' => 'test1@mail.com',
-            'password' => Hash::make('test123'),
-            'rol_id' => 1
-        ]);
+        User::create(
+            ['name' => 'admin1',
+            'email' => 'admin@mail.com',
+            'password' => Hash::make('admin123'),
+            'rol_id' => 2],
+            ['name' => 'user1',
+            'email' => 'user@mail.com',
+            'password' => Hash::make('user123'),
+            'rol_id' => 1]
+        );
 
         categorias_plato::create(
             ['categoria' => 'entrada'],

@@ -18,7 +18,12 @@ class Middleware
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->route('/'); // Redirect to the login route
+            //admin middleware
+            if(Auth::user()->rol_id == 1){
+                return redirect()->route('/'); // Redirect to the login route
+            }
+            //user middleware
+            return redirect()->route('');
         }
 
         return $next($request);
