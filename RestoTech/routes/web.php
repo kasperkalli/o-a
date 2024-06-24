@@ -17,14 +17,23 @@ Route::post('/logging-in', [UserController::class, 'login'])  -> name("logging-i
 Route::post('/registering', [UserController::class, 'register'])  -> name("registering");
 
 
+
+//logged customer
 Route::get('/home', [HomeController::class, 'index']) -> middleware(CheckRole::class) -> name("home");
-Route::get('/mesas', [MesasController::class, 'index']) -> middleware(CheckRole::class) -> name("mesas");
+Route::get('/platoslist', [PlatosController::class, 'list']) -> middleware(CheckRole::class) -> name("platos.list");
+Route::get('/mesaslist', [MesasController::class, 'list']) -> middleware(CheckRole::class) -> name("mesas.list");
+//api like routes
 //Route::get('/platos/{id}', [PlatosController::class, 'show']) -> name("platos.show");
 //Route::get('/mesas/{id}', [MesasController::class, 'show']) -> name("mesas.show");
 
-Route::post('/selfedit', [UserController::class, 'selfedit']) -> middleware(CheckRole::class) -> name("self.edit");
+Route::get('/selfedit', [UserController::class, 'selfedit']) -> middleware(CheckRole::class) -> name("self.edit");
+Route::post('/selfeditstore', [UserController::class, 'selfeditsstore']) -> middleware(CheckRole::class) -> name("self.edit.store");
 
+
+
+//logged admin
 Route::get('/admin', [AdminController::class, 'index']) ->middleware(CheckRoleadmin::class) -> name("admin");
+Route::get('/mesas', [MesasController::class, 'index']) -> middleware(CheckRoleadmin::class) -> name("mesas");
 Route::get('/platos', [PlatosController::class, 'index']) ->middleware(CheckRoleadmin::class) -> name("platos");
 Route::post('/platoStore', [PlatosController::class, 'store']) ->middleware(CheckRoleadmin::class) -> name("platos.store");
 
@@ -34,5 +43,7 @@ Route::post('/usuarioStore', [AdminController::class, 'storeUsers']) ->middlewar
 Route::post('/usuarioEdit', [AdminController::class, 'editUsers']) ->middleware(CheckRoleadmin::class) -> name("usuarios.edit");
 Route::delete('/usuarioDelete', [AdminController::class, 'deleteUsers']) ->middleware(CheckRoleadmin::class) -> name("usuario.delete");
 
-//todos los usuarios
+
+
+//all users
 Route::get('/logout', [UserController::class, 'logout']) -> middleware(CheckRole::class) -> name("logout");

@@ -21,12 +21,22 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item @if (Route::currentRouteName() == 'mesas') active @endif">
-                        <a class="nav-link" style="pointer-events: none" aria-current="page" href="{{ route('mesas') }}">ver mesas</a>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item @if (Route::currentRouteName() == 'mesas.list') active @endif">
+                        <a class="nav-link"  aria-current="page" href="{{ route('mesas.list') }}">ver mesas</a>
                     </li>
-                    <li class="nav-item @if (Route::currentRouteName() == 'platos') active @endif">
-                        <a class="nav-link" style="pointer-events: none" aria-current="page" href="{{ route('platos') }}">ver menu</a>
+                    <li class="nav-item @if (Route::currentRouteName() == 'platos.list') active @endif">
+                        <a class="nav-link"  aria-current="page" href="{{ route('platos.list') }}">ver menu</a>
+                    </li>
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            User Options
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('self.edit') }}">Change Data</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">Log Off</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

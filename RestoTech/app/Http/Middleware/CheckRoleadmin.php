@@ -17,12 +17,10 @@ class CheckRoleadmin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            dd('no log');
             return redirect()->route('login')->withErrors(['login' => 'Por favor, inicie sesión antes de acceder a esta ruta.']);
         }
 
         if (Auth::user()->rol_id != 2) {
-            dd('no admin');
             return redirect()->route('login')->withErrors(['login' => 'No tiene permisos para acceder a esta ruta.']);
         }
 

@@ -71,6 +71,23 @@ class UserController extends Controller
         ]);
     }
 
+    function selfedit(){
+        $user = Auth::user();
+        return view('user.selfedit', compact('user'));
+    }
+
+    function selfeditsstore(Request $request){
+        $user = User::where('name', Auth::user()->name)->first();
+        if ($request->name != $user->name || $request->email != $user->email){
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+            
+            return redirect()->route('self.edit');
+        }
+        return back()->withErrors(['name' => 'No se ha modificado ningún campo']);
+    }
 
     function logout(Request $request){
         Auth::logout();

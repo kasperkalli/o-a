@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('contenido-principal')
-<form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+<form action="{{ route('usuarios.update', $user->id) }}" method="POST">
     @csrf
     @method('PUT')
 

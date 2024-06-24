@@ -11,7 +11,13 @@ class PlatosController extends Controller
     public function index()
     {
         $platos = Platos::all();
-        return view('platos.index', compact('platos'));
+        return view('platos.admin', compact('platos'));
+    }
+
+    public function list()
+    {
+        $platos = Platos::all();
+        return view('platos.list', compact('platos'));
     }
 
     public function store(Request $request)
