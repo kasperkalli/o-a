@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Mesa;
-use App\Models\Plato;
+use App\Models\Platos;
 use App\Models\categorias_plato;
 use App\Models\tipo_rol;
 use App\Models\User;
@@ -20,21 +20,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         
-        tipo_rol::create(
-            ['rol' => 'Customer'],
-            ['rol' => 'Admin']
-        );
+        tipo_rol::create(['rol' => 'Customer']);
+        tipo_rol::create(['rol' => 'Admin']);
 
         User::create(
             ['name' => 'admin1',
             'email' => 'admin@mail.com',
-            'password' => Hash::make('admin123'),
-            'rol_id' => 2],
+            'rol_id' => 2,
+            'password' => Hash::make('admin123'),]);
+        User::create(            
             ['name' => 'user1',
             'email' => 'user@mail.com',
-            'password' => Hash::make('user123'),
-            'rol_id' => 1]
-        );
+            'rol_id' => 1,
+            'password' => Hash::make('user123')]);
 
         categorias_plato::create(
             ['categoria' => 'entrada'],

@@ -66,22 +66,28 @@
                             </span>
                             <input type="text" id="name" name="name" class="form-control form-control-lg fs-6" placeholder="Usuario">
                         </div>
+                        @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="input-group mb-3">
                             <span class="input-group-text">
                                 <i class='bx bx-lock-alt'></i>
                             </span>
                             <input type="password" id="password" name="password" class="form-control form-control-lg fs-6" placeholder="Contraseña">
                         </div>
+                        @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="input-group mb-3 d-flex justify-content-between">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="chek" name="chek">
                                 <label for="chek" class="form-check-label text-secondary"><small>Recuerdame</small></label>
                             </div>
                             <div>
-                                <small><a href="register" title="No implementado">Olvidé mi contraseña</a></small>
+                                <small><a href="register">Olvidé mi contraseña</a></small>
                             </div>
                         </div>
-                        @error('failed')
+                        @error('login')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <button class="btn btn-primary btn-lg w-100" type="submit">

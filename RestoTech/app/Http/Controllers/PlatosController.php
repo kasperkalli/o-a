@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plato;
+use App\Models\Platos;
 
 use Illuminate\Http\Request;
 
@@ -10,13 +10,13 @@ class PlatosController extends Controller
 {
     public function index()
     {
-        $platos = Plato::all();
+        $platos = Platos::all();
         return view('platos.index', compact('platos'));
     }
 
     public function store(Request $request)
     {
-        $plato = new Plato();
+        $plato = new Platos();
         $plato->nombre = $request->nombre;
         $plato->precio = $request->precio;
         $plato->categoria_id = $request->categoria;
@@ -25,12 +25,12 @@ class PlatosController extends Controller
     }
 
     public function find(Request $request){
-        $plato = Plato::find($request->id);
+        $plato = Platos::find($request->id);
         return view('platos.edit', compact('plato'));
     }
 
     public function update(Request $request){
-        $plato = Plato::find($request->id);
+        $plato = Platos::find($request->id);
         $plato->nombre = $request->nombre;
         $plato->precio = $request->precio;
         $plato->categoria_id = $request->categoria;

@@ -16,9 +16,8 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->rol_id == 1) {
-            return redirect()->route('/'); // Redirect to the login route
-   
+        if (!Auth::check()) {
+            return redirect()->route('login')->withErrors(['login' => 'Porfavor loggese antes de entrar a esa ruta']);
         }
 
         return $next($request);

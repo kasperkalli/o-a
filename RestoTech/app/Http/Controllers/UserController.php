@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     function loginview(){
@@ -19,7 +19,7 @@ class UserController extends Controller
 
     function login(Request $request){
 
-
+        $errors = [];
         $credentials = [
             'name' => $request->name,
             'password' => $request->password
@@ -31,15 +31,20 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            if (Auth::user()->role == 'Admin') {
-                return redirect()->route('admin');
+            if (Auth::user()->rol_id == 2) {
+                return redirect()->intended('admin');
 
             }else{
-                return redirect()->route('home');
+                return redirect()->intended('home');
             }
         }else{
-            return back()->withErrors([
-                'failed' => 'Usuario o contraseña incorrectos.']);
+            if(DB::table('users')->where('name', $request->name)->first() == null){
+                $errors['name'] = 'Usuario incorrecto';
+            }else{
+                $errors['password'] = 'Contraseña incorrecta';
+            }
+
+            return back()->withErrors($errors);
 
         }
     }
