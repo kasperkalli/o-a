@@ -27,7 +27,15 @@ class AdminController extends Controller
         return redirect()->route('usuarios');
     }
 
-    function editUsers(Request $request, User $user){
+
+    function editUsers(Request $request){
+        $user = User::where('id', $request->id)->first();
+        //dd($user);
+        return view('admin.edit', compact('user'));
+    }
+
+    function editUsersstore(Request $request){
+        $user = User::where('id', $request->id)->first();
         if (Auth::user()->role == 'admin' & $user->name != Auth::user()->name){
             $user->name = $request->name;
             $user->email = $request->email;

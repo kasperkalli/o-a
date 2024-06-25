@@ -40,7 +40,8 @@ Route::post('/platoStore', [PlatosController::class, 'store']) ->middleware(Chec
 //listar/editar usuarios
 Route::get('/usuarios', [AdminController::class, 'listUsers']) ->middleware(CheckRoleadmin::class) ->name("usuarios");
 Route::post('/usuarioStore', [AdminController::class, 'storeUsers']) ->middleware(CheckRoleadmin::class) -> name("usuarios.store");
-Route::post('/usuarioEdit', [AdminController::class, 'editUsers']) ->middleware(CheckRoleadmin::class) -> name("usuarios.edit");
+Route::get('/usuarioEdit', [AdminController::class, 'editUsers']) ->middleware(CheckRoleadmin::class) -> name("usuarios.edit");
+Route::post('/usuarioEdit', [AdminController::class, 'editUsersstore']) ->middleware(CheckRoleadmin::class) -> name("usuarios.edit.store");
 Route::delete('/usuarioDelete', [AdminController::class, 'deleteUsers']) ->middleware(CheckRoleadmin::class) -> name("usuario.delete");
 
 

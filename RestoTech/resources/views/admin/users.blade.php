@@ -18,8 +18,12 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
-                        <td>
-                            <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-primary">Editar</a>
+                        <td style="display: flex; justify-content: space-between;">
+                            <form action="{{route('usuarios.edit')}}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $user->id }}">
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </form>
                             <form action="{{ route('usuario.delete', $user->id) }}" method="POST" style="display: inline; @if ($user->name == Auth::User()->name) pointer-events: none @endif">
                                 @csrf
                                 @method('DELETE')
