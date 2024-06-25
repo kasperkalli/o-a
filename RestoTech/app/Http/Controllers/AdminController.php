@@ -36,17 +36,18 @@ class AdminController extends Controller
 
     function editUsersstore(Request $request){
         $user = User::where('id', $request->id)->first();
-        if (Auth::user()->role == 'admin' & $user->name != Auth::user()->name){
+        if (Auth::user()->role == 'admin' || $user-> id != null){
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->role = $request->role;
+            $user->rol_id = $request->customer ? 2 : 1; // 2 es cliente, 1 es admin
             $user->save();
         }
         return redirect()->route('usuarios');
     }
 
-    function deleteUsers(User $id){
-        $id->delete();
+    function deleteUsers(Request $request){
+        $user = User::where('id', $request->id)->first();
+        $user->delete();
         return redirect()->route('usuarios');
     }
 }

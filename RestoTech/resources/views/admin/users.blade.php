@@ -18,15 +18,19 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
+
                         <td style="display: flex; justify-content: space-between;">
                             <form action="{{route('usuarios.edit')}}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $user->id }}">
                                 <button type="submit" class="btn btn-primary">Editar</button>
                             </form>
-                            <form action="{{ route('usuario.delete', $user->id) }}" method="POST" style="display: inline; @if ($user->name == Auth::User()->name) pointer-events: none @endif">
+                        </td>
+                        <td class="text-center" style="width: 1rem">
+                            <form action="{{ route('usuario.delete') }}" method="POST" style="display: inline; @if ($user->name == Auth::User()->name) pointer-events: none @endif">
                                 @csrf
                                 @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $user->id }}">
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>

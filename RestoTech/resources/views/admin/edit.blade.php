@@ -58,10 +58,23 @@
                             </span>
                             <input type="email" id="email" name="email" class="form-control form-control-lg fs-6" value="{{ $user->email?? '' }}" required>
                         </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class='bx bx-user'></i>
+                            </span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rol_id" id="customer" value="1" {{ $user->rol_id == 1 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="customer">Customer</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rol_id" id="admin" value="2" {{ $user->rol_id == 2 ? 'checked' : '' }}>
+                                <label class="form-check-label" for="admin">Admin</label>
+                            </div>
+                        </div>
                         @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        
+                        <input type="hidden" name="id" value="{{ $user->id }}">
                         <button class="btn btn-primary btn-lg w-100" type="submit">
                             guardar nuevos datos
                         </button>

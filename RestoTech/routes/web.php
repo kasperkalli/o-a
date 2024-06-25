@@ -36,7 +36,9 @@ Route::get('/admin', [AdminController::class, 'index']) ->middleware(CheckRolead
 Route::get('/mesas', [MesasController::class, 'index']) -> middleware(CheckRoleadmin::class) -> name("mesas");
 Route::get('/platos', [PlatosController::class, 'index']) ->middleware(CheckRoleadmin::class) -> name("platos");
 Route::post('/platoStore', [PlatosController::class, 'store']) ->middleware(CheckRoleadmin::class) -> name("platos.store");
-
+Route::get('/platoEdit', [PlatosController::class, 'find']) ->middleware(CheckRoleadmin::class) -> name("platos.edit");
+Route::post('/platoShow', [PlatosController::class, 'show']) ->middleware(CheckRoleadmin::class) -> name("platos.show");
+Route::delete('/platoDelete', [PlatosController::class, 'delete']) ->middleware(CheckRoleadmin::class) -> name("platos.delete");
 //listar/editar usuarios
 Route::get('/usuarios', [AdminController::class, 'listUsers']) ->middleware(CheckRoleadmin::class) ->name("usuarios");
 Route::post('/usuarioStore', [AdminController::class, 'storeUsers']) ->middleware(CheckRoleadmin::class) -> name("usuarios.store");

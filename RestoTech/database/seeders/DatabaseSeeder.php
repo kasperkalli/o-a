@@ -36,8 +36,12 @@ class DatabaseSeeder extends Seeder
 
         categorias_plato::create(
             ['categoria' => 'entrada'],
+        );
+        categorias_plato::create(
             ['categoria' => 'plato fuerte'],
-            ['categoria' => 'postre']
+        );
+        categorias_plato::create(
+            ['categoria' => 'postre'],
         );
 
         Mesa::create(
