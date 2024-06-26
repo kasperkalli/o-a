@@ -27,19 +27,19 @@
                             <tr>
                                 <td class="align-middle">{{ $num + 1 }}</td>
                                 <td class="align-middle">{{ $plato->nombre }}</td>
-                                <td class="align-middle">{{ $plato->precio }}</td>
+                                <td class="align-middle">${{ $plato->precio }}</td>
                                 <td class="align-middle">{{ $plato->categoria_id }}</td>
                                 <td class="text-center" style="width: 1rem"></td>
 
                                 <td class="text-center" style="width: 1rem">
-                                    <a href="#" class="btn btn-sm btn-warning pb-0 text-white" 
+                                    <a href="#" class="btn btn-sm btn-warning pb-0 text-white"
                                         data-bs-toggle="tooltip" data-bs-title="Editar {{ $plato->nombre }}">
-                                         <!-- onclick="route('platos.show', $plato->id)}}" -->
+                                        <!-- onclick="route('platos.show', $plato->id)}}" -->
                                         <span class="material-icons">edit</span>
                                     </a>
                                 </td>
                                 <td class="text-center" style="width: 1rem">
-                                    <form action="{{route('platos.delete')}}" method="POST">
+                                    <form action="{{ route('platos.delete') }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $plato->id }}">
