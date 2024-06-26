@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-06-2024 a las 14:31:58
+-- Tiempo de generación: 26-06-2024 a las 17:03:46
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,6 +34,13 @@ CREATE TABLE `boletas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `boletas`
+--
+
+INSERT INTO `boletas` (`id`, `id_usuario`, `detalles`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Compra de platos', '2024-06-26 18:57:01', '2024-06-26 18:57:01');
 
 -- --------------------------------------------------------
 
@@ -77,9 +84,8 @@ CREATE TABLE `mesas` (
 --
 
 INSERT INTO `mesas` (`id`, `descripcion`, `usandose`, `numero_asientos`, `posx`, `posy`, `created_at`, `updated_at`) VALUES
-(1, 'mesa de test', 0, 4, 0, 0, '2024-06-26 16:24:36', '2024-06-26 16:24:36'),
-(2, NULL, 0, 5, NULL, NULL, '2024-06-26 16:24:54', '2024-06-26 16:25:18'),
-(3, NULL, 0, 10, NULL, NULL, '2024-06-26 16:25:00', '2024-06-26 16:25:16');
+(1, 'mesa de test', 0, 4, 0, 0, '2024-06-26 18:54:46', '2024-06-26 18:58:01'),
+(2, NULL, 0, 6, NULL, NULL, '2024-06-26 18:57:58', '2024-06-26 18:58:01');
 
 -- --------------------------------------------------------
 
@@ -127,7 +133,9 @@ CREATE TABLE `platos` (
 --
 
 INSERT INTO `platos` (`id`, `nombre`, `precio`, `categoria_id`, `created_at`, `updated_at`) VALUES
-(1, 'Fideos con salsa', '3000', 2, '2024-06-26 16:28:55', '2024-06-26 16:28:55');
+(1, 'Fideos con salsa', '3000', 2, '2024-06-26 18:56:24', '2024-06-26 18:56:24'),
+(2, 'Arroz con pollo', '4500', 2, '2024-06-26 18:58:12', '2024-06-26 18:58:12'),
+(3, 'Frutilla', '1500', 3, '2024-06-26 18:58:23', '2024-06-26 18:58:23');
 
 -- --------------------------------------------------------
 
@@ -142,6 +150,13 @@ CREATE TABLE `platos_vendidos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `platos_vendidos`
+--
+
+INSERT INTO `platos_vendidos` (`id_boleta`, `id_plato`, `cantidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2024-06-26 18:57:01', '2024-06-26 18:57:01');
 
 -- --------------------------------------------------------
 
@@ -201,8 +216,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `rol_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin1', 'admin@mail.com', NULL, '$2y$12$aAeqf.FCo.LiULsGUuB81.mhZWKP/2aB15YbUZx0mNQFUqdHpm9he', 2, NULL, '2024-06-26 16:24:35', '2024-06-26 16:24:35'),
-(2, 'user1', 'user@mail.com', NULL, '$2y$12$w806HzuRA6s/1EREuekEy.gVWfTFaqM9oyNwpodGiOjCrS1mBLGW2', 1, NULL, '2024-06-26 16:24:36', '2024-06-26 16:24:36');
+(1, 'admin1', 'admin@mail.com', NULL, '$2y$12$eXhw3sZHz5KY.EML7yYjWuV1NQt/ZZdIqHKPXK4dn/npV7sQN6SsK', 2, NULL, '2024-06-26 18:54:46', '2024-06-26 18:54:46'),
+(2, 'user1', 'user@mail.com', NULL, '$2y$12$5RSFUL0IyqOj1lUNF6LP2.KSUCo.LIejC8P6Bp1jufE.feSvWiNRC', 2, NULL, '2024-06-26 18:54:46', '2024-06-26 19:03:08'),
+(4, 'user2', 'user2@mail.com', '2024-06-26 14:59:50', 'user123', 1, NULL, '2024-06-26 14:59:50', '2024-06-26 14:59:50'),
+(5, 'admin2', 'admin2@mail.com', '2024-06-26 15:00:48', 'admin123', 2, NULL, '2024-06-26 15:00:48', '2024-06-26 15:00:48');
 
 --
 -- Índices para tablas volcadas
@@ -277,7 +294,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `boletas`
 --
 ALTER TABLE `boletas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_platos`
@@ -289,7 +306,7 @@ ALTER TABLE `categorias_platos`
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -301,7 +318,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `platos`
 --
 ALTER TABLE `platos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
@@ -319,7 +336,7 @@ ALTER TABLE `tipo_rol`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
