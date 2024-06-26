@@ -22,6 +22,7 @@ Route::post('/registering', [UserController::class, 'register'])->name("register
 Route::get('/home', [HomeController::class, 'index'])->middleware(CheckRole::class)->name("home");
 Route::get('/platoslist', [PlatosController::class, 'list'])->middleware(CheckRole::class)->name("platos.list");
 Route::get('/mesaslist', [MesasController::class, 'list'])->middleware(CheckRole::class)->name("mesas.list");
+Route::post('/mesasupdate', [MesasController::class, 'update'])->middleware(CheckRole::class)->name("mesas.update");
 //api like routes
 //Route::get('/platos/{id}', [PlatosController::class, 'show']) -> name("platos.show");
 //Route::get('/mesas/{id}', [MesasController::class, 'show']) -> name("mesas.show");
@@ -49,8 +50,9 @@ Route::post('/usuarioStore', [AdminController::class, 'storeUsers'])->middleware
 Route::get('/usuarioEdit', [AdminController::class, 'editUsers'])->middleware(CheckRoleadmin::class)->name("usuarios.edit");
 Route::post('/usuarioEdit', [AdminController::class, 'editUsersstore'])->middleware(CheckRoleadmin::class)->name("usuarios.edit.store");
 Route::delete('/usuarioDelete', [AdminController::class, 'deleteUsers'])->middleware(CheckRoleadmin::class)->name("usuario.delete");
+Route::get('/platosEscodigosupdate', [PlatosController::class, 'addchosenPlatos'])->middleware(CheckRoleadmin::class)->name("platos.add.escogidos");
 
-
+Route::post('/platosEscodigosStore', [PlatosController::class, 'chosenPlatosStore'])->middleware(CheckRoleadmin::class)->name("platos.escogidos.store");
 
 //all users
 Route::get('/logout', [UserController::class, 'logout'])->middleware(CheckRole::class)->name("logout");

@@ -2,13 +2,6 @@
 
 @section('contenido-principal')
 
-@php
-$platos_escogidos = [];
-function addelement($array, $element){
-    $array[] = $element;
-    return $array;
-}
-@endphp
     <!-- datos -->
     <div class="container-fluid">
         <div class="row">
@@ -20,36 +13,37 @@ function addelement($array, $element){
         <div class="row">
             <!-- tabla -->
             <div class="col-12 col-lg-8 order-last order-lg-first">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Categoría</th>
-                            <th colspan="3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($platos as $num => $plato)
+                <form action="{{route('platos.add.escogidos')}}" method="GET">
+                    @csrf
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Categoría</th>
+                                <th colspan="3">Seleccion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($platos as $num => $plato)
                             <tr>
                                 <td class="align-middle">{{ $num + 1 }}</td>
                                 <td class="align-middle">{{ $plato->nombre }}</td>
                                 <td class="align-middle">{{ $plato->precio }}</td>
                                 <td class="align-middle">{{ $plato->categoria }}</td>
-                                <td class="text-center" style="width: 1rem">
 
-                                </td>
                                 <td class="text-center" style="width: 1rem">
-                                    <a href="#" class="btn btn-sm btn-info pb-0 text-white" data-bs-toggle="tooltip" onclick={{$platos_escogidos = addelement($platos_escogidos, $plato) }}
-                                        data-bs-title="Ver {{ $plato->nombre }}">
-                                        <span class="material-icons">agregar a pedido</span>
-                                    </a>
+                                    <input type="checkbox" name="platos_escogidos[]" value="{{ $plato->id }}">
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Agregar pedido</button>
+                    </div>
+                </form>
             </div>
             <!-- lista de platos escogidos -->
             <div class="col-12 col-lg-4 order-first order-lg-last">
@@ -57,15 +51,22 @@ function addelement($array, $element){
                     <div class="card-header bg-dark text-white">Platos escogidos</div>
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach ($platos_escogidos as $plato)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ $plato->nombre }}
-                                    <span class="badge badge-primary badge-pill">{{ $plato->precio }}</span>
-                                </li>
-                            @endforeach
+                            @if($platos_escogidos->count() > 0)
+                                <form method="POST" action="{{route('platos.escogidos.store')}}">
+                                    @csrf
+                                    @foreach($platos_escogidos as $plato)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $plato->nombre }}
+                                            <input type="hidden" name="platos_escogidos[]" value="{{ $plato->id }}">
+                                        </li>
+                                    @endforeach
+                                    <button class="btn btn-primary">Confirmar Compra</button>
+                                </form>
+                            @endif
                         </ul>
                     </div>  
                 </div>
             </div>
+        </div>
     </div>
 @endsection

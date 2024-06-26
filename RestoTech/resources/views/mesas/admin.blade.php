@@ -1,4 +1,4 @@
-@extends('layouts.usuarionormal')
+@extends('layouts.master')
 
 @section('contenido-principal')
     <h2>Ver mesas</h2>
@@ -26,19 +26,22 @@
                         @foreach ($mesas as $num => $mesa)
                             <tr>
                                 <td class="align-middle">{{ $mesa->id }}</td>
-                                <td class="align-middle">{{ $mesa->usandose }}</td>
-                                <td class="align-middle">{{ $mesa->capacidad }}</td>
-                                <td class="text-center" style="width: 1rem"></td>
+                                <td class="align-middle">{{ $mesa->usandose == 0 ? 'Libre' : ' Ocupada'}}</td>
+                                <td class="align-middle">{{ $mesa->numero_asientos }}</td>
 
                                 <td class="text-center" style="width: 1rem">
-                                    <a href="#" class="btn btn-sm btn-warning pb-0 text-white"
-                                        data-bs-toggle="tooltip" data-bs-title="Editar {{ $mesa->id }}">
-
-                                        <span class="material-icons">edit</span>
-                                    </a>
+                                    <form action="{{route('mesas.update')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$mesa->id}}">
+                                        <input type="hidden" name="estado" value="{{$mesa->usandose == 0 ? '1' : ' 0'}}">
+                                        <button class="btn btn-sm btn-warning pb-0 text-white"
+                                            type="submit">
+                                            <span class="material-icons">sync_alt</span>
+                                        </button>
+                                    </form>
                                 </td>
                                 <td class="text-center" style="width: 1rem">
-                                    <form action="{{ route('platos.delete') }}" method="POST">
+                                    <form action="{{ route('mesas.delete') }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $mesa->id }}">
@@ -71,7 +74,7 @@
                             </div>
                             <div class="mb-3 d-grid gap-2 d-lg-block">
                                 <button type="reset" class="btn btn-warning">Cancelar</button>
-                                <button type="submit" class="btn btn-success">Agregar Plato</button>
+                                <button type="submit" class="btn btn-success">Agregar Mesa</button>
                             </div>
                         </form>
                     </div>

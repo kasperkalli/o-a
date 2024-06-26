@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\userstoreRequest;
 class AdminController extends Controller
 {
     //
@@ -18,7 +18,9 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    function storeUsers(Request $request){
+    function storeUsers(userstoreRequest $request){
+        $request->validated();
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -39,7 +41,12 @@ class AdminController extends Controller
         if (Auth::user()->role == 'admin' || $user-> id != null){
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->rol_id = $request->customer ? 2 : 1; // 2 es cliente, 1 es admin
+            // 2 es cliente, 1 es admin
+            if ($request->customer == true){
+                $user->rol_id = 1; 
+            }else{
+                $user->rol_id = 2;
+            }
             $user->save();
         }
         return redirect()->route('usuarios');

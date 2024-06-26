@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Platos;
+use App\Models\Platos_vendido;
+use App\Models\Boleta;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class PlatosController extends Controller
 {
@@ -18,7 +21,8 @@ class PlatosController extends Controller
     public function list()
     {
         $platos = Platos::all();
-        return view('platos.list', compact('platos'));
+        $platos_escogidos = [];
+        return view('platos.list', compact('platos', 'platos_escogidos'));
     }
 
     public function store(Request $request)
@@ -55,6 +59,38 @@ class PlatosController extends Controller
 
     function show(Platos $id){
         return view('platos.show', compact('plato'));
+    }
+
+    function addchosenPlatos(Request $request){
+        //dd($request->input('platos_escogidos', []));
+        $platosid = $request->input('platos_escogidos', []);
+        //dd(Platos::WhereIn('id', $platosid)->get());
+        return view('platos.list', [
+            'platos' => Platos::all(),
+            'platos_escogidos' => Platos::WhereIn('id', $platosid)->get(),
+        ]);
+    }
+
+    function chosenPlatosStore(Request $request){
+        $platosid = $request->input('platos_escogidos', []);
+
+        $platos_escogidos = Platos::WhereIn('id', $platosid)->get();
+
+        $boleta = new Boleta();
+        $boleta->id_usuario = Auth::user()->id;
+        $boleta->detalles = 'Compra de platos';
+
+        $boleta->save();
+
+        foreach ($platos_escogidos as $plato){
+            $plato_vendido = new Platos_vendido();
+            $plato_vendido->id_boleta = $boleta->id;
+            $plato_vendido->id_plato = $plato->id;
+            $plato_vendido->cantidad = 1;
+            $plato_vendido->save();
+        }
+
+        return redirect()->route('mesas');
     }
 
 }

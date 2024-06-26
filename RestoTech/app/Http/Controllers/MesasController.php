@@ -48,4 +48,17 @@ class MesasController extends Controller
         $mesa->delete();
         return redirect()->route('mesas');
     }
+
+    function update(Request $request)
+    {
+        $mesa = Mesa::find($request->id);
+        $mesa->usandose = $request->estado;
+        $mesa->save();
+        $mesas = Mesa::all();
+        if (Auth::user()->rol_id == 2) {
+            return view('mesas.admin', compact('mesas'));
+        } else {
+            return view('mesas.list', compact('mesas'));
+        }
+    }
 }
