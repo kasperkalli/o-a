@@ -1,15 +1,9 @@
 @extends('layouts.master')
 
 @section('contenido-principal')
-    <h2>Ver mesas</h2>
+    <h2 class="m-3 text-center">Ver mesas</h2>
     <!-- datos -->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center m-3">Menú</h3>
-            </div>
-        </div>
-
         <div class="row">
             <!-- tabla -->
             <div class="col-12 col-lg-8 order-last order-lg-first">
@@ -26,16 +20,16 @@
                         @foreach ($mesas as $num => $mesa)
                             <tr>
                                 <td class="align-middle">{{ $mesa->id }}</td>
-                                <td class="align-middle">{{ $mesa->usandose == 0 ? 'Libre' : ' Ocupada'}}</td>
+                                <td class="align-middle">{{ $mesa->usandose == 0 ? 'Libre' : ' Ocupada' }}</td>
                                 <td class="align-middle">{{ $mesa->numero_asientos }}</td>
 
                                 <td class="text-center" style="width: 1rem">
-                                    <form action="{{route('mesas.update')}}" method="POST">
+                                    <form action="{{ route('mesas.update') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{$mesa->id}}">
-                                        <input type="hidden" name="estado" value="{{$mesa->usandose == 0 ? '1' : ' 0'}}">
-                                        <button class="btn btn-sm btn-warning pb-0 text-white"
-                                            type="submit">
+                                        <input type="hidden" name="id" value="{{ $mesa->id }}">
+                                        <input type="hidden" name="estado"
+                                            value="{{ $mesa->usandose == 0 ? '1' : ' 0' }}">
+                                        <button class="btn btn-sm btn-warning pb-0 text-white" type="submit">
                                             <span class="material-icons">sync_alt</span>
                                         </button>
                                     </form>

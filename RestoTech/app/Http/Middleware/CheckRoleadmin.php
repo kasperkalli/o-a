@@ -20,7 +20,7 @@ class CheckRoleadmin
             return redirect()->route('login')->withErrors(['login' => 'Por favor, inicie sesión antes de acceder a esta ruta.']);
         }
 
-        if (Auth::user()->rol_id != 2) {
+        if (Auth::user()->rol_id != 1) {
             return redirect()->route('login')->withErrors(['login' => 'No tiene permisos para acceder a esta ruta.']);
         }
 

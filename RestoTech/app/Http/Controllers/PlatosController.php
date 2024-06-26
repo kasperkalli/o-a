@@ -35,14 +35,16 @@ class PlatosController extends Controller
         return redirect()->route('platos');
     }
 
-    public function find(Request $request){
+    public function find(Request $request)
+    {
         $plato = Platos::find($request->id);
         return view('platos.edit', compact('plato'));
     }
 
-    public function update(Request $request){
-        $plato = Platos::where('id',$request->id);
-        if (Auth::user()->role == 'admin'){
+    public function update(Request $request)
+    {
+        $plato = Platos::where('id', $request->id);
+        if (Auth::user()->role == 'admin') {
             $plato->nombre = $request->nombre;
             $plato->precio = $request->precio;
             $plato->categoria_id = $request->categoria;
@@ -51,17 +53,20 @@ class PlatosController extends Controller
         return redirect()->route('platos');
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $plato = Platos::find($request->id);
         $plato->delete();
         return redirect()->route('platos');
     }
 
-    function show(Platos $id){
+    function show(Platos $id)
+    {
         return view('platos.show', compact('plato'));
     }
 
-    function addchosenPlatos(Request $request){
+    function addchosenPlatos(Request $request)
+    {
         //dd($request->input('platos_escogidos', []));
         $platosid = $request->input('platos_escogidos', []);
         //dd(Platos::WhereIn('id', $platosid)->get());
@@ -71,7 +76,8 @@ class PlatosController extends Controller
         ]);
     }
 
-    function chosenPlatosStore(Request $request){
+    function chosenPlatosStore(Request $request)
+    {
         $platosid = $request->input('platos_escogidos', []);
 
         $platos_escogidos = Platos::WhereIn('id', $platosid)->get();
@@ -82,7 +88,7 @@ class PlatosController extends Controller
 
         $boleta->save();
 
-        foreach ($platos_escogidos as $plato){
+        foreach ($platos_escogidos as $plato) {
             $plato_vendido = new Platos_vendido();
             $plato_vendido->id_boleta = $boleta->id;
             $plato_vendido->id_plato = $plato->id;
@@ -92,5 +98,4 @@ class PlatosController extends Controller
 
         return redirect()->route('mesas');
     }
-
 }

@@ -39,11 +39,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            User Options
+                            Opciones
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('self.edit') }}">Change Data</a></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}">Log Off</a></li>
+                            <li><a class="dropdown-item" href="{{ route('self.edit') }}">Editar perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>

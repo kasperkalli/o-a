@@ -19,36 +19,43 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        
+
         tipo_rol::create(['rol' => 'Customer']);
         tipo_rol::create(['rol' => 'Admin']);
 
         User::create(
-            ['name' => 'admin1',
-            'email' => 'admin@mail.com',
-            'rol_id' => 2,
-            'password' => Hash::make('admin123'),]);
-        User::create(            
-            ['name' => 'user1',
-            'email' => 'user@mail.com',
-            'rol_id' => 1,
-            'password' => Hash::make('user123')]);
+            [
+                'name' => 'admin1',
+                'email' => 'admin@mail.com',
+                'rol_id' => 2,
+                'password' => Hash::make('admin123'),
+            ]
+        );
+        User::create(
+            [
+                'name' => 'user1',
+                'email' => 'user@mail.com',
+                'rol_id' => 1,
+                'password' => Hash::make('user123')
+            ]
+        );
 
         categorias_plato::create(
-            ['categoria' => 'entrada'],
+            ['categoria' => 'entrada'], // 1
         );
         categorias_plato::create(
-            ['categoria' => 'plato fuerte'],
+            ['categoria' => 'plato fuerte'], // 2
         );
         categorias_plato::create(
-            ['categoria' => 'postre'],
+            ['categoria' => 'postre'], // 3
         );
 
         Mesa::create(
-            ['descripcion' => 'mesa de test',
-             'posx' => 0,
-             'posy' => 0]
+            [
+                'descripcion' => 'mesa de test',
+                'posx' => 0,
+                'posy' => 0
+            ]
         );
-
     }
 }

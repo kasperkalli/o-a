@@ -50,8 +50,8 @@ Route::post('/usuarioStore', [AdminController::class, 'storeUsers'])->middleware
 Route::get('/usuarioEdit', [AdminController::class, 'editUsers'])->middleware(CheckRoleadmin::class)->name("usuarios.edit");
 Route::post('/usuarioEdit', [AdminController::class, 'editUsersstore'])->middleware(CheckRoleadmin::class)->name("usuarios.edit.store");
 Route::delete('/usuarioDelete', [AdminController::class, 'deleteUsers'])->middleware(CheckRoleadmin::class)->name("usuario.delete");
-Route::get('/platosEscodigosupdate', [PlatosController::class, 'addchosenPlatos'])->middleware(CheckRoleadmin::class)->name("platos.add.escogidos");
 
+Route::get('/platosEscogidosupdate', [PlatosController::class, 'addchosenPlatos'])->middleware(CheckRoleadmin::class)->name("platos.add.escogidos");
 Route::post('/platosEscodigosStore', [PlatosController::class, 'chosenPlatosStore'])->middleware(CheckRoleadmin::class)->name("platos.escogidos.store");
 
 //all users
